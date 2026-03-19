@@ -1,16 +1,10 @@
 {
-  "name": "jobx360",
-  "version": "1.0.0",
-  "private": true,
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.0.0",
-    "lucide-react": "^0.263.1",
-    "sonner": "^1.0.0"
+    "sonner": "^2.0.7"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build"
+  "devDependencies": {
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.2"
   }
 }
