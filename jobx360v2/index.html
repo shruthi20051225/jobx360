@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="JobX360 – Connecting Jobs, Empowering Futures. India's premier recruitment platform."/>
+  <title>JobX360 – Connecting Jobs, Empowering Futures</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="./css/style.css"/>
+</head>
+<body>
+
+<!-- ══ TOAST ══ -->
+<div id="toast"></div>
+
+<!-- ══════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════ -->
+<header id="header">
+  <nav class="nav-inner">
+   <a href="#home" class="logo">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 80" style="height:55px;width:auto">
+    <defs>
+      <clipPath id="globeClip">
+        <circle cx="38" cy="40" r="30"/>
+      </clipPath>
+    </defs>
+    <circle cx="38" cy="40" r="30" fill="#1a4a4a"/>
+    <g clip-path="url(#globeClip)" fill="#2a7a6a" opacity="0.95">
+      <path d="M8 22 L20 18 L25 26 L18 34 L10 32 Z"/>
+      <path d="M16 38 L25 36 L27 50 L20 58 L14 52 Z"/>
+      <path d="M36 18 L46 16 L48 24 L42 26 L36 22 Z"/>
+      <path d="M38 28 L50 26 L54 40 L50 56 L40 58 L36 46 L38 34 Z"/>
+      <path d="M48 16 L70 13 L72 22 L62 28 L50 26 L48 20 Z"/>
+      <path d="M56 44 L67 42 L69 53 L60 57 L53 52 Z"/>
+      <path d="M20 10 L30 8 L32 17 L22 18 Z"/>
+    </g>
+    <g clip-path="url(#globeClip)" fill="none" stroke="#4db8a0" stroke-width="0.5" opacity="0.35">
+      <ellipse cx="38" cy="40" rx="30" ry="9"/>
+      <ellipse cx="38" cy="40" rx="30" ry="19"/>
+      <ellipse cx="38" cy="40" rx="30" ry="27"/>
+      <line x1="38" y1="10" x2="38" y2="70"/>
+      <ellipse cx="38" cy="40" rx="11" ry="30"/>
+      <ellipse cx="38" cy="40" rx="22" ry="30"/>
+    </g>
+    <circle cx="38" cy="40" r="30" fill="none" stroke="#4db8a0" stroke-width="1.2"/>
+    <!-- J with superscript x -->
+    <text x="35" y="49" font-family="Georgia, serif" font-size="24" font-weight="bold" text-anchor="middle" fill="white">J</text>
+    <text x="48" y="36" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="white">x</text>
+    <!-- Small empty degree circle top-right -->
+   <circle cx="64" cy="13" r="6" fill="#1a4a4a" stroke="#4db8a0" stroke-width="1.2"/>
+    <!-- Brand text -->
+    <text x="88" y="38" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#2a9d8f" letter-spacing="0.3">JobX360</text>
+    <text x="88" y="54" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="400" fill="#4db8a0" letter-spacing="2.5">CAREERS REDEFINED</text>
+  </svg>
+</a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+      <li><a href="#contact" class="nav-btn">Post a Job</a></li>
+    </ul>
+
+    <button class="hamburger" id="hbg" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+
+<!-- ══════════════════════════════════════
+     HERO  — Full bleed image like screenshot
+══════════════════════════════════════ -->
+<section id="home" class="hero">
+  <div class="hero-img-wrap">
+    <!-- Professional job application / office photo from Unsplash -->
+    <img
+      src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1600&q=80&auto=format&fit=crop"
+      alt="Professional reviewing job application"
+      class="hero-bg-img"
+      loading="eager"
+    />
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">India's Premier Recruitment Platform</p>
+    <h1>Connecting Jobs,<br/><em>Empowering Futures</em></h1>
+    <p class="hero-sub">50+ live opportunities. 10+ verified companies.<br/>Your dream career is one click away.</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     ABOUT US — image left, text right
+══════════════════════════════════════ -->
+<section id="about" class="section-white">
+  <div class="wrap about-single">
+
+    <div class="about-text-col">
+      <span class="tag-label">About Us</span>
+      <h2 class="sec-h">Redefining How<br/>India Gets Hired</h2>
+      <p class="sec-p">JobX360 was founded with a clear mission — to remove every barrier between ambition and opportunity. We combine cutting-edge AI with a deeply human approach to connect millions of Indians with careers they truly love.</p>
+      <p class="sec-p">Whether you're a fresh graduate or a seasoned executive, a fast-growing startup or an established enterprise — we have the tools, the network, and the expertise to make the right connection happen.</p>
+
+      <div class="feat-grid">
+        <div class="feat"><div class="feat-icon">🤖</div><div><strong>AI Matching</strong><p>Smart algorithms surface the most relevant roles for your profile instantly.</p></div></div>
+        <div class="feat"><div class="feat-icon">🔒</div><div><strong>Verified Employers</strong><p>Every company is vetted. Zero fake listings, zero spam — guaranteed.</p></div></div>
+        <div class="feat"><div class="feat-icon">📊</div><div><strong>Live Tracking</strong><p>Know exactly where your application stands in real-time.</p></div></div>
+        <div class="feat"><div class="feat-icon">🌍</div><div><strong>Pan-India Reach</strong><p>Jobs across 500+ cities from Tier 1 metros to emerging towns.</p></div></div>
+      </div>
+
+      <a href="#contact" class="btn btn-teal">Get in Touch →</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SERVICES — with background image
+══════════════════════════════════════ -->
+<section id="services" class="section-img-bg">
+  <div class="svc-bg-img-wrap">
+    <img
+      src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80&auto=format&fit=crop"
+      alt="Modern office workspace"
+      loading="lazy"
+    />
+    <div class="svc-overlay"></div>
+  </div>
+
+  <div class="wrap svc-content">
+    <div class="sec-head-center">
+      <span class="tag-label tag-white">What We Offer</span>
+      <h2 class="sec-h white">Our Services</h2>
+      <p class="sec-p white muted-white">Everything you need to find your next opportunity or your next great hire.</p>
+    </div>
+
+    <div class="svc-grid">
+      <div class="svc-card aos">
+        <div class="svc-icon">🔍</div>
+        <h3>Smart Job Search</h3>
+        <p>Browse 50,000+ verified listings filtered by role, location, salary, and experience level.</p>
+      </div>
+      <div class="svc-card aos">
+        <div class="svc-icon">📄</div>
+        <h3>Resume Builder</h3>
+        <p>Create an ATS-optimised resume in minutes with our guided professional templates.</p>
+      </div>
+      <div class="svc-card aos">
+        <div class="svc-icon">🏢</div>
+        <h3>Corporate Hiring</h3>
+        <p>Post unlimited jobs, search our resume database, and hire faster with our ATS integration.</p>
+      </div>
+      <div class="svc-card aos">
+        <div class="svc-icon">🎯</div>
+        <h3>Placement Services</h3>
+        <p>Dedicated recruiters who work with you personally to find and land the perfect role.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════ -->
+<section id="how" class="section-light">
+  <div class="wrap">
+    <div class="sec-head-center">
+      <span class="tag-label">Process</span>
+      <h2 class="sec-h">How It Works</h2>
+      <p class="sec-p mx-auto">From sign-up to offer letter in four simple steps.</p>
+    </div>
+
+    <div class="steps-row">
+      <div class="step-item aos">
+        <div class="step-circle">01</div>
+        <div class="step-line"></div>
+        <h3>Create Profile</h3>
+        <p>Upload your resume and set your preferences in minutes.</p>
+      </div>
+      <div class="step-item aos">
+        <div class="step-circle">02</div>
+        <div class="step-line"></div>
+        <h3>Get Matched</h3>
+        <p>AI finds the roles that fit your skills and ambitions.</p>
+      </div>
+      <div class="step-item aos">
+        <div class="step-circle">03</div>
+        <div class="step-line"></div>
+        <h3>Apply Instantly</h3>
+        <p>One-click apply with real-time application tracking.</p>
+      </div>
+      <div class="step-item aos">
+        <div class="step-circle">04</div>
+        <div class="step-line last"></div>
+        <h3>Get Hired</h3>
+        <p>Interview, get your offer, and celebrate your new role.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ══════════════════════════════════════
+     CONTACT US — dark section like screenshot
+══════════════════════════════════════ -->
+<section id="contact" class="section-dark">
+  <div class="contact-bg-wrap">
+    <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1600&q=80&auto=format&fit=crop" alt="Modern office" loading="lazy"/>
+    <div class="contact-dark-overlay"></div>
+  </div>
+  <div class="wrap contact-inner">
+    <div class="contact-left">
+      <span class="tag-label tag-white">Get in Touch</span>
+      <h2 class="sec-h white">Contact Us</h2>
+      <p class="sec-p muted-white">Have a question, want to post a job, or need help finding your next role? We're here for you.</p>
+      <div class="c-list">
+        <a href="tel:+919840719693" class="c-row">
+          <div class="c-ico">📞</div>
+          <div>
+            <div class="c-lbl">Phone</div>
+            <div class="c-val">+91 98407 19693</div>
+          </div>
+        </a>
+        <a href="mailto:Pandi@jobsurs.com" class="c-row">
+          <div class="c-ico">📧</div>
+          <div>
+            <div class="c-lbl">Email</div>
+            <div class="c-val">Pandi@jobsurs.com</div>
+          </div>
+        </a>
+        <div class="c-row">
+          <div class="c-ico">📍</div>
+          <div>
+            <div class="c-lbl">Address</div>
+            <div class="c-val">Plot 21, 22nd Street, Shankar Nagar, Pammal, Chennai – 600075</div>
+          </div>
+        </div>
+      </div>
+      <div class="c-socials">
+        <a class="csoc" href="#">in</a>
+        <a class="csoc" href="#">𝕏</a>
+        <a class="csoc" href="#">ig</a>
+        <a class="csoc" href="#">yt</a>
+      </div>
+    </div>
+    <div class="contact-form-box">
+      <h3 class="form-title">Send Us a Message</h3>
+      <p class="form-sub">We respond within 2 business hours.</p>
+      <form id="cForm" onsubmit="submitForm(event)" novalidate>
+        <div class="fr2">
+          <div class="fg"><label>First Name *</label><input id="fn" type="text" placeholder="First Name" required/></div>
+          <div class="fg"><label>Last Name *</label><input id="ln" type="text" placeholder="Last Name" required/></div>
+        </div>
+        <div class="fg"><label>Email *</label><input id="em" type="email" placeholder="Your Email" required/></div>
+        <div class="fg"><label>Phone</label><input id="ph" type="tel" placeholder="Your Phone Number"/></div>
+        <div class="fg">
+          <label>I am a…</label>
+          <select id="ut">
+            <option>Job Seeker</option>
+            <option>Employer / Recruiter</option>
+            <option>Partnership Inquiry</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fg"><label>Message *</label><textarea id="msg" rows="4" placeholder="How can we help you?" required></textarea></div>
+        <button type="submit" style="width:100%;background:linear-gradient(135deg,#1a7f7a,#2c4a9e);color:#fff;padding:15px;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;margin-top:10px;font-family:'DM Sans',sans-serif;">Send Message ✉️</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <div class="footer-top wrap">
+    <div class="footer-brand">
+      <a href="#home" class="logo">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 80" style="height:45px;width:auto">
+    <defs>
+      <clipPath id="globeClipFooter">
+        <circle cx="38" cy="40" r="30"/>
+      </clipPath>
+    </defs>
+    <circle cx="38" cy="40" r="30" fill="#1a4a4a"/>
+    <g clip-path="url(#globeClipFooter)" fill="#2a7a6a" opacity="0.95">
+      <path d="M8 22 L20 18 L25 26 L18 34 L10 32 Z"/>
+      <path d="M16 38 L25 36 L27 50 L20 58 L14 52 Z"/>
+      <path d="M36 18 L46 16 L48 24 L42 26 L36 22 Z"/>
+      <path d="M38 28 L50 26 L54 40 L50 56 L40 58 L36 46 L38 34 Z"/>
+      <path d="M48 16 L70 13 L72 22 L62 28 L50 26 L48 20 Z"/>
+      <path d="M56 44 L67 42 L69 53 L60 57 L53 52 Z"/>
+      <path d="M20 10 L30 8 L32 17 L22 18 Z"/>
+    </g>
+    <g clip-path="url(#globeClipFooter)" fill="none" stroke="#4db8a0" stroke-width="0.5" opacity="0.35">
+      <ellipse cx="38" cy="40" rx="30" ry="9"/>
+      <ellipse cx="38" cy="40" rx="30" ry="19"/>
+      <ellipse cx="38" cy="40" rx="30" ry="27"/>
+      <line x1="38" y1="10" x2="38" y2="70"/>
+      <ellipse cx="38" cy="40" rx="11" ry="30"/>
+      <ellipse cx="38" cy="40" rx="22" ry="30"/>
+    </g>
+    <circle cx="64" cy="13" r="6" fill="#1a4a4a" stroke="#4db8a0" stroke-width="1.2"/>
+    <!-- J with superscript x -->
+    <text x="35" y="49" font-family="Georgia, serif" font-size="24" font-weight="bold" text-anchor="middle" fill="white">J</text>
+    <text x="48" y="36" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="white">x</text>
+    <!-- Small empty degree circle top-right -->
+    <circle cx="64" cy="13" r="6" fill="none" stroke="#4db8a0" stroke-width="1.5"/>
+    <!-- Brand text -->
+    <text x="88" y="38" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#2a9d8f" letter-spacing="0.3">JobX360</text>
+    <text x="88" y="54" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="400" fill="#4db8a0" letter-spacing="2.5">CAREERS REDEFINED</text>
+  </svg>
+</a>
+      <p>India's smartest recruitment platform — connecting the right talent with the right opportunities, every single day.</p>
+      <div class="ft-socials">
+        <a href="#" class="ft-soc">in</a>
+        <a href="#" class="ft-soc">𝕏</a>
+        <a href="#" class="ft-soc">ig</a>
+        <a href="#" class="ft-soc">yt</a>
+      </div>
+    </div>
+    <div class="fcol"><h4>Job Seekers</h4><ul><li><a href="#contact">Upload Resume</a></li><li><a href="#">Salary Guide</a></li><li><a href="#">Career Advice</a></li><li><a href="#">Fresher Jobs</a></li></ul></div>
+    <div class="fcol"><h4>Employers</h4><ul><li><a href="#contact">Post a Job</a></li><li><a href="#">Search Resumes</a></li><li><a href="#">Pricing Plans</a></li><li><a href="#">Recruiter Portal</a></li><li><a href="#">ATS Integration</a></li></ul></div>
+    <div class="fcol"><h4>Company</h4><ul><li><a href="#about">About Us</a></li><li><a href="#">Careers</a></li><li><a href="#">Blog</a></li><li><a href="#">Press Kit</a></li><li><a href="#contact">Contact Us</a></li></ul></div>
+  </div>
+  <div class="footer-bottom wrap">
+    <span>© 2026 JobX360. All rights reserved.</span>
+    <span>Privacy Policy · Terms of Use · Sitemap</span>
+  </div>
+</footer>
+
+<script src="./js/main.js"></script>
+</body>
+</html>
