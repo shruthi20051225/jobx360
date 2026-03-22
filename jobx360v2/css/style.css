@@ -553,3 +553,4 @@ footer { background: #080b10; color: rgba(255,255,255,.65); padding: 70px 5% 28p
   .svc-grid   { grid-template-columns: 1fr; }
   .steps-row  { grid-template-columns: 1fr 1fr; }
 }
+.form-sub-btn { width: 100%; justify-content: center; font-size: 16px; padding: 15px; }
