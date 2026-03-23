@@ -90,11 +90,11 @@ function submitForm(e) {
     'service_p4av2kv',       // ← replace with your Service ID
     'template_lf98tdj ',      // ← replace with your Template ID
     {
-      Name: {{from_name}}
-      Email: {{from_email}}
-      Phone: {{phone}}
-      Type: {{user_type}}
-      Message:{{message}}
+      from_name:  fn + ' ' + ln,
+      from_email: em,
+      phone:      ph || 'Not provided',
+      user_type:  ut,
+      message:    msg
     },
     '4RZF-gih5VZLr0bz5 '        // ← replace with your Public Key
   ).then(() => {
