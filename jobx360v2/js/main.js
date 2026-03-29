@@ -71,7 +71,6 @@ function applyJob(btn, title) {
 /* ── 6. Contact form ── */
 function submitForm(e) {
   e.preventDefault();
-
   const fn  = document.getElementById('fn').value.trim();
   const ln  = document.getElementById('ln').value.trim();
   const em  = document.getElementById('em').value.trim();
@@ -87,8 +86,8 @@ function submitForm(e) {
   btn.disabled = true;
 
   emailjs.send(
-    'service_p4av2kv',       // ← replace with your Service ID
-    'template_lf98tdj ',      // ← replace with your Template ID
+    'service_p4av2kv',
+    'template_lf98tdj',
     {
       from_name:  fn + ' ' + ln,
       from_email: em,
@@ -96,7 +95,7 @@ function submitForm(e) {
       user_type:  ut,
       message:    msg
     },
-    '4RZF-gih5VZLr0bz5 '        // ← replace with your Public Key
+    '4RZF-gih5VZLr0bz5'
   ).then(() => {
     btn.textContent      = '✓ Message Sent!';
     btn.style.background = 'linear-gradient(135deg,#34d399,#059669)';

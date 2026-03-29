@@ -7,6 +7,8 @@
   <title>JobX360 – Connecting Jobs, Empowering Futures</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="./css/style.css"/>
+ <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>emailjs.init('4RZF-gih5VZLr0bz5');</script>
 </head>
 <body>
 
@@ -261,7 +263,7 @@
     <div class="contact-form-box">
       <h3 class="form-title">Send Us a Message</h3>
       <p class="form-sub">We respond within 2 business hours.</p>
-      <form id="cForm" onsubmit="submitForm(event)" novalidate>
+       <form id="cForm" onsubmit="submitForm(event)" novalidate>
         <div class="fr2">
           <div class="fg"><label>First Name *</label><input id="fn" type="text" placeholder="First Name" required/></div>
           <div class="fg"><label>Last Name *</label><input id="ln" type="text" placeholder="Last Name" required/></div>

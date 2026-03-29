@@ -74,6 +74,8 @@ function submitForm(e) {
   const fn  = document.getElementById('fn').value.trim();
   const ln  = document.getElementById('ln').value.trim();
   const em  = document.getElementById('em').value.trim();
+  const ph  = document.getElementById('ph').value.trim();
+  const ut  = document.getElementById('ut').value;
   const msg = document.getElementById('msg').value.trim();
   const btn = document.getElementById('submitBtn');
 
@@ -81,11 +83,22 @@ function submitForm(e) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { showToast('Please enter a valid email.', 'orange'); return; }
 
   btn.textContent = 'Sending…';
-  btn.disabled    = true;
+  btn.disabled = true;
 
-  setTimeout(() => {
+  emailjs.send(
+    'service_p4av2kv',
+    'template_lf98tdj',
+    {
+      from_name:  fn + ' ' + ln,
+      from_email: em,
+      phone:      ph || 'Not provided',
+      user_type:  ut,
+      message:    msg
+    },
+    '4RZF-gih5VZLr0bz5'
+  ).then(() => {
     btn.textContent      = '✓ Message Sent!';
-    btn.style.background = '#135f5b';
+    btn.style.background = 'linear-gradient(135deg,#34d399,#059669)';
     showToast("Thank you! We'll respond within 2 business hours.", 'teal');
     setTimeout(() => {
       btn.textContent      = 'Send Message ✉️';
@@ -93,7 +106,12 @@ function submitForm(e) {
       btn.disabled         = false;
       document.getElementById('cForm').reset();
     }, 4000);
-  }, 1500);
+  }).catch((error) => {
+    btn.textContent = 'Send Message ✉️';
+    btn.disabled    = false;
+    showToast('Failed to send. Please try again.', 'orange');
+    console.error('EmailJS error:', error);
+  });
 }
 
 /* ── 7. Toast notifications ── */
