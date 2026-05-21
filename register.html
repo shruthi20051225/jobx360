@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="JobX360 – Candidate Registration. Create your free profile and apply to jobs instantly."/>
+  <title>Register – JobX360</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="./css/style.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>emailjs.init('4RZF-gih5VZLr0bz5');</script>
+</head>
+<body>
+
+<!-- ══ TOAST ══ -->
+<div id="toast"></div>
+
+<!-- ══ HEADER ══ -->
+<header id="header">
+  <nav class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 80" style="height:55px;width:auto">
+        <defs>
+          <clipPath id="globeClip">
+            <circle cx="38" cy="40" r="30"/>
+          </clipPath>
+        </defs>
+        <circle cx="38" cy="40" r="30" fill="#1a4a4a"/>
+        <g clip-path="url(#globeClip)" fill="#2a7a6a" opacity="0.95">
+          <path d="M8 22 L20 18 L25 26 L18 34 L10 32 Z"/>
+          <path d="M16 38 L25 36 L27 50 L20 58 L14 52 Z"/>
+          <path d="M36 18 L46 16 L48 24 L42 26 L36 22 Z"/>
+          <path d="M38 28 L50 26 L54 40 L50 56 L40 58 L36 46 L38 34 Z"/>
+          <path d="M48 16 L70 13 L72 22 L62 28 L50 26 L48 20 Z"/>
+          <path d="M56 44 L67 42 L69 53 L60 57 L53 52 Z"/>
+          <path d="M20 10 L30 8 L32 17 L22 18 Z"/>
+        </g>
+        <g clip-path="url(#globeClip)" fill="none" stroke="#4db8a0" stroke-width="0.5" opacity="0.35">
+          <ellipse cx="38" cy="40" rx="30" ry="9"/>
+          <ellipse cx="38" cy="40" rx="30" ry="19"/>
+          <ellipse cx="38" cy="40" rx="30" ry="27"/>
+          <line x1="38" y1="10" x2="38" y2="70"/>
+          <ellipse cx="38" cy="40" rx="11" ry="30"/>
+          <ellipse cx="38" cy="40" rx="22" ry="30"/>
+        </g>
+        <circle cx="38" cy="40" r="30" fill="none" stroke="#4db8a0" stroke-width="1.2"/>
+        <text x="35" y="49" font-family="Georgia, serif" font-size="24" font-weight="bold" text-anchor="middle" fill="white">J</text>
+        <text x="48" y="36" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="white">x</text>
+        <circle cx="64" cy="13" r="6" fill="#1a4a4a" stroke="#4db8a0" stroke-width="1.2"/>
+        <text x="88" y="38" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#2a9d8f" letter-spacing="0.3">JobX360</text>
+        <text x="88" y="54" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="400" fill="#4db8a0" letter-spacing="2.5">CAREERS REDEFINED</text>
+      </svg>
+    </a>
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </nav>
+</header>
+
+<!-- ══ REGISTRATION PAGE ══ -->
+<section class="reg-page">
+  <div class="reg-container">
+
+    <!-- Page Header -->
+    <div class="reg-page-header">
+      <span class="tag-label">JobX360</span>
+      <h1 class="reg-page-title">Candidate Registration</h1>
+      <p class="reg-page-sub">Create your free profile — it only takes 3 minutes.</p>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="reg-progress-wrap">
+      <div class="reg-steps-bar">
+        <div class="reg-step active" data-step="1">
+          <div class="reg-step-circle">1</div>
+          <div class="reg-step-label">Personal</div>
+        </div>
+        <div class="reg-step-line"></div>
+        <div class="reg-step" data-step="2">
+          <div class="reg-step-circle">2</div>
+          <div class="reg-step-label">Professional</div>
+        </div>
+        <div class="reg-step-line"></div>
+        <div class="reg-step" data-step="3">
+          <div class="reg-step-circle">3</div>
+          <div class="reg-step-label">Education</div>
+        </div>
+        <div class="reg-step-line"></div>
+        <div class="reg-step" data-step="4">
+          <div class="reg-step-circle">4</div>
+          <div class="reg-step-label">Preferences</div>
+        </div>
+        <div class="reg-step-line"></div>
+        <div class="reg-step" data-step="5">
+          <div class="reg-step-circle">5</div>
+          <div class="reg-step-label">Resume</div>
+        </div>
+        <div class="reg-step-line"></div>
+        <div class="reg-step" data-step="6">
+          <div class="reg-step-circle">6</div>
+          <div class="reg-step-label">Review</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <form id="regForm" novalidate>
+
+      <!-- ════════ STEP 1: Personal Info ════════ -->
+      <div class="reg-slide active" data-slide="1">
+        <div class="reg-slide-header">
+          <h2 class="reg-slide-title">Personal Information</h2>
+          <p class="reg-slide-desc">Tell us about yourself.</p>
+        </div>
+        <div class="reg-fields">
+          <div class="fr2">
+            <div class="fg"><label>First Name *</label><input id="fn" type="text" placeholder="First Name" required/></div>
+            <div class="fg"><label>Last Name *</label><input id="ln" type="text" placeholder="Last Name" required/></div>
+          </div>
+          <div class="fr2">
+            <div class="fg"><label>Email *</label><input id="em" type="email" placeholder="your@email.com" required/></div>
+            <div class="fg"><label>Phone *</label><input id="ph" type="tel" placeholder="+91 XXXXXXXXXX" required/></div>
+          </div>
+          <div class="fr2">
+            <div class="fg"><label>Date of Birth</label><input id="dob" type="date"/></div>
+            <div class="fg">
+              <label>Gender</label>
+              <select id="gender">
+                <option value="">Select gender...</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+                <option>Prefer not to say</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg"><label>Full Address</label><input id="address" type="text" placeholder="Your complete address"/></div>
+          <div class="fr2">
+            <div class="fg"><label>City *</label><input id="city" type="text" placeholder="e.g. Chennai" required/></div>
+            <div class="fg"><label>State *</label><input id="state" type="text" placeholder="e.g. Tamil Nadu" required/></div>
+          </div>
+          <div class="fr2">
+            <div class="fg"><label>Pincode</label><input id="pincode" type="text" placeholder="e.g. 600075" maxlength="6"/></div>
+            <div class="fg"><label>LinkedIn URL</label><input id="linkedin" type="url" placeholder="https://linkedin.com/in/yourprofile"/></div>
+          </div>
+        </div>
+        <div class="reg-slide-footer">
+          <span class="step-indicator">Step 1 of 6</span>
+          <button type="button" class="reg-btn reg-btn-next" onclick="nextStep(1)">Next: Professional →</button>
+        </div>
+      </div>
+
+      <!-- ════════ STEP 2: Professional ════════ -->
+      <div class="reg-slide" data-slide="2">
+        <div class="reg-slide-header">
+          <h2 class="reg-slide-title">Professional Details</h2>
+          <p class="reg-slide-desc">Tell us about your work experience.</p>
+        </div>
+        <div class="reg-fields">
+          <div class="fr2">
+            <div class="fg"><label>Current Company</label><input id="company" type="text" placeholder="Where you currently work"/></div>
+            <div class="fg"><label>Current Job Title</label><input id="title" type="text" placeholder="e.g. Software Engineer"/></div>
+          </div>
+          <div class="fr2">
+            <div class="fg"><label>Total Years of Experience *</label>
+              <select id="exp" required>
+                <option value="">Select experience...</option>
+                <option>Fresher (0 years)</option>
+                <option>Less than 1 year</option>
+                <option>1-2 years</option>
+                <option>3-5 years</option>
+                <option>5-8 years</option>
+                <option>8-10 years</option>
+                <option>10+ years</option>
+              </select>
+            </div>
+            <div class="fg"><label>Notice Period *</label>
+              <select id="notice" required>
+                <option value="">Select notice period...</option>
+                <option>Immediate</option>
+                <option>15 days</option>
+                <option>30 days</option>
+                <option>45 days</option>
+                <option>60 days</option>
+                <option>90+ days</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg"><label>Key Skills * <span style="font-weight:400;color:var(--muted);font-size:12px;">(comma separated)</span></label><input id="skills" type="text" placeholder="e.g. React, Python, SQL, Excel, SEO" required/></div>
+          <div class="fg"><label>Brief Summary / Current Role Description</label>
+            <textarea id="summary" rows="3" placeholder="Describe your current role, responsibilities, and achievements..."></textarea>
+          </div>
+        </div>
+        <div class="reg-slide-footer">
+          <button type="button" class="reg-btn reg-btn-back" onclick="prevStep(2)">← Personal</button>
+          <span class="step-indicator">Step 2 of 6</span>
+          <button type="button" class="reg-btn reg-btn-next" onclick="nextStep(2)">Next: Education →</button>
+        </div>
+      </div>
+
+      <!-- ════════ STEP 3: Education ════════ -->
+      <div class="reg-slide" data-slide="3">
+        <div class="reg-slide-header">
+          <h2 class="reg-slide-title">Education Details</h2>
+          <p class="reg-slide-desc">Tell us about your academic background.</p>
+        </div>
+        <div class="reg-fields">
+          <div class="fr2">
+            <div class="fg"><label>Highest Qualification *</label>
+              <select id="qual" required>
+                <option value="">Select qualification...</option>
+                <option>Below 10th</option>
+                <option>10th Pass</option>
+                <option>12th Pass</option>
+                <option>Diploma</option>
+                <option>Graduate (Bachelor's)</option>
+                <option>Post Graduate (Master's)</option>
+                <option>MBA / PGDM</option>
+                <option>Ph.D.</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="fg"><label>Branch / Stream *</label><input id="branch" type="text" placeholder="e.g. Computer Science, Electronics, Commerce" required/></div>
+          </div>
+          <div class="fr2">
+            <div class="fg"><label>College / University</label><input id="college" type="text" placeholder="e.g. Anna University, IIT Delhi"/></div>
+            <div class="fg"><label>Passing Year</label><input id="passyear" type="text" placeholder="e.g. 2022"/></div>
+          </div>
+          <div class="fr2">
+            <div class="fg"><label>CGPA / Percentage</label><input id="cgpa" type="text" placeholder="e.g. 8.5 CGPA or 85%"/></div>
+            <div class="fg"><label>Certifications (Optional)</label><input id="certifications" type="text" placeholder="e.g. AWS, Google Analytics, PMP"/></div>
+          </div>
+        </div>
+        <div class="reg-slide-footer">
+          <button type="button" class="reg-btn reg-btn-back" onclick="prevStep(3)">← Professional</button>
+          <span class="step-indicator">Step 3 of 6</span>
+          <button type="button" class="reg-btn reg-btn-next" onclick="nextStep(3)">Next: Preferences →</button>
+        </div>
+      </div>
+
+      <!-- ════════ STEP 4: Job Preferences ════════ -->
+      <div class="reg-slide" data-slide="4">
+        <div class="reg-slide-header">
+          <h2 class="reg-slide-title">Job Preferences</h2>
+          <p class="reg-slide-desc">Help us find the perfect job for you.</p>
+        </div>
+        <div class="reg-fields">
+          <div class="fr2">
+            <div class="fg"><label>Preferred Role *</label>
+              <select id="ut" required>
+                <option value="">Choose a role...</option>
+                <option>Software Engineer / Developer</option>
+                <option>Data Analyst / Data Scientist</option>
+                <option>Marketing Executive / Manager</option>
+                <option>Sales Executive / Manager</option>
+                <option>HR Recruiter / HR Manager</option>
+                <option>Product Manager</option>
+                <option>UI / UX Designer</option>
+                <option>Graphic Designer</option>
+                <option>Business Analyst</option>
+                <option>DevOps / Cloud Engineer</option>
+                <option>Quality Assurance (QA)</option>
+                <option>Content Writer / Editor</option>
+                <option>Finance / Accounting</option>
+                <option>Teaching / Education</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="fg"><label>Preferred Location</label>
+              <select id="prefloc">
+                <option value="">Select city...</option>
+                <option>Chennai</option>
+                <option>Bangalore</option>
+                <option>Hyderabad</option>
+                <option>Mumbai</option>
+                <option>Delhi NCR</option>
+                <option>Pune</option>
+                <option>Kolkata</option>
+                <option>Ahmedabad</option>
+                <option>Jaipur</option>
+                <option>Lucknow</option>
+                <option>Coimbatore</option>
+                <option>Kochi</option>
+                <option>Remote / Work from Home</option>
+                <option>Any City</option>
+              </select>
+            </div>
+          </div>
+          <div class="fr2">
+            <div class="fg"><label>Expected Annual Salary (₹) *</label>
+              <select id="salary" required>
+                <option value="">Select salary range...</option>
+                <option>Less than ₹2 LPA</option>
+                <option>₹2 - 5 LPA</option>
+                <option>₹5 - 8 LPA</option>
+                <option>₹8 - 12 LPA</option>
+                <option>₹12 - 18 LPA</option>
+                <option>₹18 - 25 LPA</option>
+                <option>₹25 - 40 LPA</option>
+                <option>Above ₹40 LPA</option>
+                <option>Not disclosed</option>
+              </select>
+            </div>
+            <div class="fg"><label>Employment Type</label>
+              <select id="emptype">
+                <option>Full-time</option>
+                <option>Part-time</option>
+                <option>Contract / Freelance</option>
+                <option>Internship</option>
+                <option>Any</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg"><label>Job Type</label>
+            <div class="checkbox-group">
+              <label class="cb-label"><input type="checkbox" name="jobtype" value="IT / Software"/> IT / Software</label>
+              <label class="cb-label"><input type="checkbox" name="jobtype" value="Sales / Marketing"/> Sales / Marketing</label>
+              <label class="cb-label"><input type="checkbox" name="jobtype" value="Finance / Banking"/> Finance / Banking</label>
+              <label class="cb-label"><input type="checkbox" name="jobtype" value="Healthcare"/> Healthcare</label>
+              <label class="cb-label"><input type="checkbox" name="jobtype" value="Manufacturing"/> Manufacturing</label>
+              <label class="cb-label"><input type="checkbox" name="jobtype" value="Education"/> Education</label>
+              <label class="cb-label"><input type="checkbox" name="jobtype" value="Any"/> Any</label>
+            </div>
+          </div>
+        </div>
+        <div class="reg-slide-footer">
+          <button type="button" class="reg-btn reg-btn-back" onclick="prevStep(4)">← Education</button>
+          <span class="step-indicator">Step 4 of 6</span>
+          <button type="button" class="reg-btn reg-btn-next" onclick="nextStep(4)">Next: Upload Resume →</button>
+        </div>
+      </div>
+
+      <!-- ════════ STEP 5: Resume Upload ════════ -->
+      <div class="reg-slide" data-slide="5">
+        <div class="reg-slide-header">
+          <h2 class="reg-slide-title">Upload Your Resume</h2>
+          <p class="reg-slide-desc">Attach your resume to complete your profile.</p>
+        </div>
+        <div class="reg-fields">
+          <div class="fg fg-file">
+            <label>Resume / CV * <span style="font-weight:400;color:var(--muted);font-size:12px;margin-left:6px;">PDF, DOC, or DOCX — Max 5MB</span></label>
+            <div class="file-upload-wrap">
+              <input id="resume" type="file" accept=".pdf,.doc,.docx" required/>
+              <div class="file-upload-label" id="fileLabel">
+                <span class="file-icon">📄</span>
+                <span>Click to upload or drag & drop your resume</span>
+              </div>
+            </div>
+          </div>
+          <div class="fg"><label>Cover Letter / Message <span style="font-weight:400;color:var(--muted);font-size:12px;">(optional)</span></label>
+            <textarea id="msg" rows="4" placeholder="Tell us about yourself, your strengths, and what kind of role you're looking for..."></textarea>
+          </div>
+          <div class="fg-fg-check">
+            <input id="terms" type="checkbox" required style="width:auto;margin-right:8px;"/>
+            <label style="display:inline;font-size:13px;color:var(--sub);margin:0;text-transform:none;letter-spacing:0;">I agree to the <a href="#" style="color:var(--teal);text-decoration:underline;">Terms of Service</a> and <a href="#" style="color:var(--teal);text-decoration:underline;">Privacy Policy</a>.</label>
+          </div>
+        </div>
+        <div class="reg-slide-footer">
+          <button type="button" class="reg-btn reg-btn-back" onclick="prevStep(5)">← Preferences</button>
+          <span class="step-indicator">Step 5 of 6</span>
+          <button type="button" class="reg-btn reg-btn-next" onclick="nextStep(5)">Next: Review →</button>
+        </div>
+      </div>
+
+      <!-- ════════ STEP 6: Review ════════ -->
+      <div class="reg-slide" data-slide="6">
+        <div class="reg-slide-header">
+          <h2 class="reg-slide-title">Review Your Profile</h2>
+          <p class="reg-slide-desc">Make sure everything looks correct before submitting.</p>
+        </div>
+        <div class="reg-fields">
+          <div class="review-grid" id="reviewGrid">
+            <!-- Filled dynamically via JS -->
+          </div>
+          <div class="review-warning" id="reviewWarning" style="display:none;">
+            <span>⚠️</span> Please go back and complete all required fields marked with *.
+          </div>
+        </div>
+        <div class="reg-slide-footer">
+          <button type="button" class="reg-btn reg-btn-back" onclick="prevStep(6)">← Resume</button>
+          <span class="step-indicator">Step 6 of 6</span>
+          <button type="button" class="reg-btn reg-btn-submit" id="submitBtn" onclick="submitRegistration()">✓ Submit Registration</button>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- Success Message -->
+    <div class="reg-success" id="regSuccess" style="display:none;">
+      <div class="success-icon">✅</div>
+      <h2>Registration Successful!</h2>
+      <p>Thank you! Your profile has been submitted. Our team will contact you within <strong>24 hours</strong>.</p>
+      <p class="success-email">A confirmation has been sent to your email.</p>
+      <a href="index.html" class="btn btn-teal" style="margin-top:24px;">← Back to Home</a>
+    </div>
+
+  </div>
+</section>
+
+<script src="./js/register.js"></script>
+</body>
+</html>

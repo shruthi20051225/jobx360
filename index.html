@@ -62,7 +62,7 @@
       <li><a href="#about">About Us</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#contact">Contact Us</a></li>
-      <li><a href="jobseeker-register.html" class="nav-btn">Register</a></li>
+      <li><a href="#contact" class="nav-btn">Post a Job</a></li>
     </ul>
 
     <button class="hamburger" id="hbg" onclick="toggleNav()">
@@ -91,6 +91,10 @@
     <p class="hero-eyebrow">India's Premier Recruitment Platform</p>
     <h1>Connecting Jobs,<br/><em>Empowering Futures</em></h1>
     <p class="hero-sub">50+ live opportunities. 10+ verified companies.<br/>Your dream career is one click away.</p>
+    <div class="hero-btns">
+      <a href="register.html" class="btn btn-teal">Apply Now →</a>
+      <a href="#services" class="btn btn-white">Explore Services</a>
+    </div>
   </div>
 </section>
 
@@ -238,11 +242,11 @@
             <div class="c-val">+91 98407 19693</div>
           </div>
         </a>
-        <a href="mailto:Pandi@jobsurs.com" class="c-row">
+        <a href="mailto:Pandi@jobx360.com" class="c-row">
           <div class="c-ico">📧</div>
           <div>
             <div class="c-lbl">Email</div>
-            <div class="c-val">Pandi@jobsurs.com</div>
+            <div class="c-val">Pandi@jobx360.com</div>
           </div>
         </a>
         <div class="c-row">
@@ -261,26 +265,190 @@
       </div>
     </div>
     <div class="contact-form-box">
-      <h3 class="form-title">Send Us a Message</h3>
-      <p class="form-sub">We respond within 2 business hours.</p>
+      <h3 class="form-title">Candidate Registration</h3>
+      <p class="form-sub">Create your free profile and apply to jobs instantly.</p>
        <form id="cForm" onsubmit="submitForm(event)" novalidate>
+
+        <!-- Personal Info -->
+        <div class="reg-section-title">Personal Information</div>
         <div class="fr2">
           <div class="fg"><label>First Name *</label><input id="fn" type="text" placeholder="First Name" required/></div>
           <div class="fg"><label>Last Name *</label><input id="ln" type="text" placeholder="Last Name" required/></div>
         </div>
-        <div class="fg"><label>Email *</label><input id="em" type="email" placeholder="Your Email" required/></div>
-        <div class="fg"><label>Phone</label><input id="ph" type="tel" placeholder="Your Phone Number"/></div>
-        <div class="fg">
-          <label>I am a…</label>
-          <select id="ut">
-            <option>Job Seeker</option>
-            <option>Employer / Recruiter</option>
-            <option>Partnership Inquiry</option>
-            <option>Other</option>
-          </select>
+        <div class="fr2">
+          <div class="fg"><label>Email *</label><input id="em" type="email" placeholder="Your Email" required/></div>
+          <div class="fg"><label>Phone *</label><input id="ph" type="tel" placeholder="+91 XXXXXXXXXX" required/></div>
         </div>
-        <div class="fg"><label>Message *</label><textarea id="msg" rows="4" placeholder="How can we help you?" required></textarea></div>
-        <button type="submit" style="width:100%;background:linear-gradient(135deg,#1a7f7a,#2c4a9e);color:#fff;padding:15px;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;margin-top:10px;font-family:'DM Sans',sans-serif;">Send Message ✉️</button>
+        <div class="fr2">
+          <div class="fg"><label>Date of Birth</label><input id="dob" type="date"/></div>
+          <div class="fg">
+            <label>Gender</label>
+            <select id="gender">
+              <option value="">Select gender...</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+              <option>Prefer not to say</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg"><label>Full Address</label><input id="address" type="text" placeholder="Your complete address"/></div>
+        <div class="fr2">
+          <div class="fg"><label>City *</label><input id="city" type="text" placeholder="e.g. Chennai" required/></div>
+          <div class="fg"><label>State *</label><input id="state" type="text" placeholder="e.g. Tamil Nadu" required/></div>
+        </div>
+        <div class="fr2">
+          <div class="fg"><label>Pincode</label><input id="pincode" type="text" placeholder="e.g. 600075" maxlength="6"/></div>
+          <div class="fg"><label>LinkedIn URL</label><input id="linkedin" type="url" placeholder="https://linkedin.com/in/yourprofile"/></div>
+        </div>
+
+        <!-- Professional Info -->
+        <div class="reg-section-title">Professional Details</div>
+        <div class="fr2">
+          <div class="fg"><label>Current Company</label><input id="company" type="text" placeholder="Where you currently work"/></div>
+          <div class="fg"><label>Current Job Title</label><input id="title" type="text" placeholder="e.g. Software Engineer"/></div>
+        </div>
+        <div class="fr2">
+          <div class="fg"><label>Total Years of Experience *</label>
+            <select id="exp" required>
+              <option value="">Select experience...</option>
+              <option>Fresher (0 years)</option>
+              <option>Less than 1 year</option>
+              <option>1-2 years</option>
+              <option>3-5 years</option>
+              <option>5-8 years</option>
+              <option>8-10 years</option>
+              <option>10+ years</option>
+            </select>
+          </div>
+          <div class="fg"><label>Notice Period *</label>
+            <select id="notice" required>
+              <option value="">Select notice period...</option>
+              <option>Immediate</option>
+              <option>15 days</option>
+              <option>30 days</option>
+              <option>45 days</option>
+              <option>60 days</option>
+              <option>90+ days</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg"><label>Key Skills *</label><input id="skills" type="text" placeholder="e.g. React, Python, SQL, Excel (comma separated)" required/></div>
+
+        <!-- Education -->
+        <div class="reg-section-title">Education Details</div>
+        <div class="fr2">
+          <div class="fg"><label>Highest Qualification *</label>
+            <select id="qual" required>
+              <option value="">Select qualification...</option>
+              <option>Below 10th</option>
+              <option>10th Pass</option>
+              <option>12th Pass</option>
+              <option>Diploma</option>
+              <option>Graduate (Bachelor's)</option>
+              <option>Post Graduate (Master's)</option>
+              <option>MBA / PGDM</option>
+              <option>Ph.D.</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg"><label>Branch / Stream *</label><input id="branch" type="text" placeholder="e.g. Computer Science, Electronics" required/></div>
+        </div>
+        <div class="fr2">
+          <div class="fg"><label>College / University</label><input id="college" type="text" placeholder="e.g. Anna University"/></div>
+          <div class="fg"><label>Passing Year</label><input id="passyear" type="text" placeholder="e.g. 2022"/></div>
+        </div>
+
+        <!-- Job Preferences -->
+        <div class="reg-section-title">Job Preferences</div>
+        <div class="fr2">
+          <div class="fg"><label>Preferred Role / Designation *</label>
+            <select id="ut" required>
+              <option value="">Choose a role...</option>
+              <option>Software Engineer / Developer</option>
+              <option>Data Analyst / Data Scientist</option>
+              <option>Marketing Executive / Manager</option>
+              <option>Sales Executive / Manager</option>
+              <option>HR Recruiter / HR Manager</option>
+              <option>Product Manager</option>
+              <option>UI / UX Designer</option>
+              <option>Graphic Designer</option>
+              <option>Business Analyst</option>
+              <option>DevOps / Cloud Engineer</option>
+              <option>Quality Assurance (QA)</option>
+              <option>Content Writer / Editor</option>
+              <option>Finance / Accounting</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg"><label>Preferred Location</label>
+            <select id="prefloc">
+              <option value="">Select city...</option>
+              <option>Chennai</option>
+              <option>Bangalore</option>
+              <option>Hyderabad</option>
+              <option>Mumbai</option>
+              <option>Delhi NCR</option>
+              <option>Pune</option>
+              <option>Kolkata</option>
+              <option>Ahmedabad</option>
+              <option>Jaipur</option>
+              <option>Remote / Work from Home</option>
+              <option>Any City</option>
+            </select>
+          </div>
+        </div>
+        <div class="fr2">
+          <div class="fg"><label>Expected Annual Salary (₹) *</label>
+            <select id="salary" required>
+              <option value="">Select salary range...</option>
+              <option>Less than ₹2 LPA</option>
+              <option>₹2 - 5 LPA</option>
+              <option>₹5 - 8 LPA</option>
+              <option>₹8 - 12 LPA</option>
+              <option>₹12 - 18 LPA</option>
+              <option>₹18 - 25 LPA</option>
+              <option>₹25 - 40 LPA</option>
+              <option>Above ₹40 LPA</option>
+              <option>Not disclosed</option>
+            </select>
+          </div>
+          <div class="fg"><label>Employment Type</label>
+            <select id="emptype">
+              <option>Full-time</option>
+              <option>Part-time</option>
+              <option>Contract / Freelance</option>
+              <option>Internship</option>
+              <option>Any</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Resume Upload -->
+        <div class="reg-section-title">Upload Your Resume</div>
+        <div class="fg fg-file">
+          <label>Resume / CV * <span class="file-hint">(PDF, DOC, or DOCX — Max 5MB)</span></label>
+          <div class="file-upload-wrap">
+            <input id="resume" type="file" accept=".pdf,.doc,.docx" required/>
+            <div class="file-upload-label" id="fileLabel">
+              <span class="file-icon">📄</span>
+              <span>Click to upload or drag & drop your resume</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Info -->
+        <div class="fg"><label>Cover Letter / Message</label>
+          <textarea id="msg" rows="4" placeholder="Tell us about yourself, your strengths, and what kind of role you're looking for..."></textarea>
+        </div>
+
+        <!-- Terms -->
+        <div class="fg-fg-check">
+          <input id="terms" type="checkbox" required style="width:auto;margin-right:8px;"/>
+          <label style="display:inline;font-size:13px;color:var(--sub);margin:0;text-transform:none;letter-spacing:0;">I agree to the <a href="#" style="color:var(--teal);text-decoration:underline;">Terms of Service</a> and <a href="#" style="color:var(--teal);text-decoration:underline;">Privacy Policy</a>, and consent to JobX360 contacting me about relevant job opportunities.</label>
+        </div>
+
+        <button type="submit" id="regBtn" style="width:100%;background:linear-gradient(135deg,#1a7f7a,#2c4a9e);color:#fff;padding:15px;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;margin-top:10px;font-family:'DM Sans',sans-serif;">Register Now →</button>
       </form>
     </div>
   </div>
@@ -349,3 +517,15 @@
 <script src="./js/main.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
