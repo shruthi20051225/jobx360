@@ -1,0 +1,1510 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Job Seeker Registration – JobX360"/>
+  <title>Job Seeker Registration – JobX360</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="./css/style.css"/>
+  <style>
+    /* ── REGISTRATION PAGE SPECIFIC ── */
+    :root {
+      --teal: #1a7f7a;
+      --teal-lt: #e0f7f6;
+      --teal-dk: #135f5b;
+      --blue: #2c4a9e;
+      --dark: #0e1117;
+      --text: #111827;
+      --sub: #4b5563;
+      --muted: #9ca3af;
+      --border: #e5e7eb;
+      --white: #ffffff;
+      --bg: #f8f9fc;
+      --font-h: 'Cormorant Garamond', serif;
+      --font-b: 'DM Sans', sans-serif;
+      --r: 12px;
+      --t: 0.25s ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    .reg-page {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0e1117 0%, #1a4a4a 100%);
+      padding: 100px 20px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .reg-container {
+      width: 100%;
+      max-width: 720px;
+      background: rgba(255,255,255,.97);
+      border-radius: 28px;
+      box-shadow: 0 24px 70px rgba(0,0,0,.35);
+      overflow: hidden;
+      animation: fadeUp .6s ease both;
+    }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ── HEADER ── */
+    .reg-header {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dk) 100%);
+      padding: 32px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reg-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 300px;
+      height: 300px;
+      background: rgba(255,255,255,.06);
+      border-radius: 50%;
+    }
+
+    .reg-header::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 200px;
+      height: 200px;
+      background: rgba(255,255,255,.04);
+      border-radius: 50%;
+    }
+
+    .reg-header h1 {
+      font-family: var(--font-h);
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .reg-header p {
+      color: rgba(255,255,255,.78);
+      font-size: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── STEP INDICATOR ── */
+    .step-indicator {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 28px 40px 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+    }
+
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      min-width: 80px;
+      position: relative;
+    }
+
+    .step-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--border);
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      transition: all var(--t);
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-item.active .step-circle {
+      background: var(--teal);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(26,127,122,.35);
+    }
+
+    .step-item.completed .step-circle {
+      background: var(--teal-dk);
+      color: #fff;
+    }
+
+    .step-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      white-space: nowrap;
+      transition: color var(--t);
+    }
+
+    .step-item.active .step-label,
+    .step-item.completed .step-label {
+      color: var(--teal-dk);
+    }
+
+    .step-connector {
+      width: 50px;
+      height: 3px;
+      background: var(--border);
+      margin: 0 8px;
+      margin-bottom: 28px;
+      border-radius: 2px;
+      transition: background var(--t);
+    }
+
+    .step-connector.active {
+      background: var(--teal);
+    }
+
+    /* ── FORM BODY ── */
+    .reg-body {
+      padding: 36px 40px;
+      min-height: 400px;
+    }
+
+    .form-step {
+      display: none;
+      animation: fadeIn .4s ease;
+    }
+
+    .form-step.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .step-title {
+      font-family: var(--font-h);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .step-subtitle {
+      font-size: 14px;
+      color: var(--sub);
+      margin-bottom: 28px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--sub);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .form-group label .required {
+      color: #e53e3e;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: var(--text);
+      font-family: var(--font-b);
+      font-size: 15px;
+      outline: none;
+      transition: border-color var(--t), box-shadow var(--t);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(26,127,122,.12);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--muted);
+    }
+
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='%239ca3af' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      cursor: pointer;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* ── RADIO & CHECKBOX ── */
+    .radio-group,
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .radio-item,
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .checkbox-group input[type="checkbox"],
+    .inline-check input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background: var(--white);
+      position: relative;
+      transition: all var(--t);
+      flex-shrink: 0;
+    }
+
+    .checkbox-group input[type="checkbox"]:checked,
+    .inline-check input[type="checkbox"]:checked {
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .checkbox-group input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 4px;
+      height: 8px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .inline-check input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 4px;
+      height: 8px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .radio-item input[type="radio"],
+    .inline-radio input[type="radio"] {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background: var(--white);
+      position: relative;
+      transition: all var(--t);
+    }
+
+    .radio-item input[type="radio"]:checked,
+    .inline-radio input[type="radio"]:checked {
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .radio-item input[type="radio"]:checked::after,
+    .inline-radio input[type="radio"]:checked::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: white;
+      transform: translate(-50%, -50%);
+    }
+
+    .checkbox-group.inline-check {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .checkbox-group.inline-check label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .checkbox-group.inline-check input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+    }
+
+    .radio-group.inline-radio {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .radio-group.inline-radio label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .radio-group.inline-radio input[type="radio"] {
+      width: 16px;
+      height: 16px;
+    }
+
+    .radio-item span,
+    .checkbox-item span {
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Terms checkbox inline */
+    .inline-checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .inline-checkbox-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1.5px solid var(--border);
+      appearance: none;
+      -webkit-appearance: none;
+      background: var(--white);
+      position: relative;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .inline-checkbox-row input[type="checkbox"]:checked {
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .inline-checkbox-row input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 4px;
+      height: 8px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    /* ── PASSWORD ── */
+    .password-wrapper {
+      position: relative;
+    }
+
+    .password-wrapper input {
+      padding-right: 46px;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted);
+      padding: 4px;
+      transition: color var(--t);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .password-toggle:hover {
+      color: var(--teal);
+    }
+
+    .password-toggle svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .password-strength {
+      display: none;
+    }
+
+    /* ── FILE UPLOAD ── */
+    .file-upload {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 28px 20px;
+      cursor: pointer;
+      transition: all var(--t);
+      background: var(--bg);
+      text-align: center;
+    }
+
+    .file-upload:hover {
+      border-color: var(--teal);
+      background: var(--teal-lt);
+    }
+
+    .file-upload input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .file-upload-icon {
+      font-size: 36px;
+      margin-bottom: 8px;
+    }
+
+    .file-upload-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--sub);
+    }
+
+    .file-upload-hint {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .file-name {
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal-dk);
+      text-align: center;
+    }
+
+    /* ── RANGE SLIDER ── */
+    .range-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .range-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .range-value {
+      font-weight: 700;
+      color: var(--teal-dk);
+      font-size: 16px;
+    }
+
+    .range-group input[type="range"] {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: var(--border);
+      outline: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+
+    .range-group input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--teal);
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(26,127,122,.35);
+    }
+
+    /* ── FORM ACTIONS ── */
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-family: var(--font-b);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--t);
+      border: none;
+    }
+
+    .btn-back {
+      background: var(--bg);
+      color: var(--sub);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-back:hover {
+      background: var(--border);
+    }
+
+    .btn-back:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .btn-next {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dk) 100%);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(26,127,122,.3);
+      margin-left: auto;
+    }
+
+    .btn-next:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(26,127,122,.4);
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dk) 100%);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(26,127,122,.3);
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(26,127,122,.4);
+    }
+
+    .btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .step-counter {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0 auto;
+    }
+
+    /* ── ERROR STATES ── */
+    .error-text {
+      font-size: 12px;
+      color: #e53e3e;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .form-group.error input,
+    .form-group.error select,
+    .form-group.error textarea {
+      border-color: #e53e3e;
+    }
+
+    .form-group.error .error-text {
+      display: block;
+    }
+
+    /* ── SUCCESS ── */
+    .success-banner {
+      display: none;
+      text-align: center;
+      padding: 60px 40px;
+    }
+
+    .success-banner.show {
+      display: block;
+    }
+
+    .success-icon {
+      font-size: 72px;
+      margin-bottom: 20px;
+    }
+
+    .success-banner h2 {
+      font-family: var(--font-h);
+      font-size: 2rem;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .success-banner p {
+      color: var(--sub);
+      margin-bottom: 24px;
+      font-size: 15px;
+    }
+
+    .success-details {
+      background: var(--teal-lt);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .success-details h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--teal-dk);
+      margin-bottom: 12px;
+    }
+
+    .success-details ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .success-details li {
+      font-size: 14px;
+      color: var(--sub);
+    }
+
+    .success-details li::before {
+      content: '✓';
+      color: var(--teal);
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .reg-body {
+        padding: 24px 20px;
+      }
+
+      .reg-header {
+        padding: 24px 20px;
+      }
+
+      .step-indicator {
+        padding: 20px 16px 0;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .step-label {
+        display: none;
+      }
+
+      .step-connector {
+        margin-bottom: 0;
+        width: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<header id="header">
+  <nav class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 80" style="height:55px;width:auto">
+        <defs>
+          <clipPath id="globeClip"><circle cx="38" cy="40" r="30"/></clipPath>
+        </defs>
+        <circle cx="38" cy="40" r="30" fill="#1a4a4a"/>
+        <g clip-path="url(#globeClip)" fill="#2a7a6a" opacity="0.95">
+          <path d="M8 22 L20 18 L25 26 L18 34 L10 32 Z"/>
+          <path d="M16 38 L25 36 L27 50 L20 58 L14 52 Z"/>
+          <path d="M36 18 L46 16 L48 24 L42 26 L36 22 Z"/>
+          <path d="M38 28 L50 26 L54 40 L50 56 L40 58 L36 46 L38 34 Z"/>
+          <path d="M48 16 L70 13 L72 22 L62 28 L50 26 L48 20 Z"/>
+          <path d="M56 44 L67 42 L69 53 L60 57 L53 52 Z"/>
+          <path d="M20 10 L30 8 L32 17 L22 18 Z"/>
+        </g>
+        <g clip-path="url(#globeClip)" fill="none" stroke="#4db8a0" stroke-width="0.5" opacity="0.35">
+          <ellipse cx="38" cy="40" rx="30" ry="9"/><ellipse cx="38" cy="40" rx="30" ry="19"/>
+          <ellipse cx="38" cy="40" rx="30" ry="27"/><line x1="38" y1="10" x2="38" y2="70"/>
+          <ellipse cx="38" cy="40" rx="11" ry="30"/><ellipse cx="38" cy="40" rx="22" ry="30"/>
+        </g>
+        <circle cx="38" cy="40" r="30" fill="none" stroke="#4db8a0" stroke-width="1.2"/>
+        <text x="35" y="49" font-family="Georgia, serif" font-size="24" font-weight="bold" text-anchor="middle" fill="white">J</text>
+        <text x="48" y="36" font-family="Arial, sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="white">x</text>
+        <circle cx="64" cy="13" r="6" fill="#1a4a4a" stroke="#4db8a0" stroke-width="1.2"/>
+        <text x="88" y="38" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#2a9d8f" letter-spacing="0.3">JobX360</text>
+        <text x="88" y="54" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="400" fill="#4db8a0" letter-spacing="2.5">CAREERS REDEFINED</text>
+      </svg>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#about">About Us</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#contact">Contact Us</a></li>
+    </ul>
+    <button class="hamburger" id="hbg" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- ══ REGISTRATION ══ -->
+<main class="reg-page">
+  <div class="reg-container">
+    <div class="reg-header">
+      <h1>Create Job Seeker Account</h1>
+      <p>Join 50,000+ professionals finding their dream careers</p>
+    </div>
+
+    <!-- Step Indicator -->
+    <div class="step-indicator">
+      <div class="step-item active" data-step="1">
+        <div class="step-circle">1</div>
+        <span class="step-label">Personal</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" data-step="2">
+        <div class="step-circle">2</div>
+        <span class="step-label">Professional</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" data-step="3">
+        <div class="step-circle">3</div>
+        <span class="step-label">Documents</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" data-step="4">
+        <div class="step-circle">4</div>
+        <span class="step-label">Preferences</span>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" data-step="5">
+        <div class="step-circle">5</div>
+        <span class="step-label">Security</span>
+      </div>
+    </div>
+
+    <div class="reg-body">
+      <form id="regForm" novalidate>
+
+        <!-- ══ STEP 1: PERSONAL INFORMATION ══ -->
+        <div class="form-step active" data-step="1">
+          <h2 class="step-title">Personal Information</h2>
+          <p class="step-subtitle">Tell us a bit about yourself</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fullName">Full Name <span class="required">*</span></label>
+              <input type="text" id="fullName" name="fullName" placeholder="Priya Sharma" required/>
+              <span class="error-text">Please enter your full name</span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address <span class="required">*</span></label>
+              <input type="email" id="email" name="email" placeholder="priya@example.com" required/>
+              <span class="error-text">Please enter a valid email</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone Number <span class="required">*</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required/>
+              <span class="error-text">Please enter your phone number</span>
+            </div>
+
+            <div class="form-group">
+              <label for="dob">Date of Birth <span class="required">*</span></label>
+              <input type="date" id="dob" name="dob" required/>
+              <span class="error-text">Please enter your date of birth</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender">
+                <option value="">Select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+                <option value="prefer-not">Prefer not to say</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="maritalStatus">Marital Status</label>
+              <select id="maritalStatus" name="maritalStatus">
+                <option value="">Select status</option>
+                <option value="single">Single</option>
+                <option value="married">Married</option>
+                <option value="divorced">Divorced</option>
+                <option value="widowed">Widowed</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="location">Current Location <span class="required">*</span></label>
+              <input type="text" id="location" name="location" placeholder="Chennai, Tamil Nadu" required/>
+              <span class="error-text">Please enter your current location</span>
+            </div>
+
+            <div class="form-group">
+              <label for="linkedin">LinkedIn Profile</label>
+              <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/username"/>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="address">Full Address</label>
+            <textarea id="address" name="address" rows="2" placeholder="Door No, Street, Area, City, State, PIN Code"></textarea>
+          </div>
+        </div>
+
+        <!-- ══ STEP 2: PROFESSIONAL INFORMATION ══ -->
+        <div class="form-step" data-step="2">
+          <h2 class="step-title">Professional Information</h2>
+          <p class="step-subtitle">Showcase your work experience and skills</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="currentRole">Current / Last Job Title <span class="required">*</span></label>
+              <input type="text" id="currentRole" name="currentRole" placeholder="Software Engineer" required/>
+              <span class="error-text">Please enter your job title</span>
+            </div>
+
+            <div class="form-group">
+              <label for="company">Current / Last Company</label>
+              <input type="text" id="company" name="company" placeholder="Google India"/>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="experience">Total Experience <span class="required">*</span></label>
+              <select id="experience" name="experience" required>
+                <option value="">Select experience</option>
+                <option value="fresher">Fresher (0 years)</option>
+                <option value="0-1">0-1 years</option>
+                <option value="1-3">1-3 years</option>
+                <option value="3-5">3-5 years</option>
+                <option value="5-10">5-10 years</option>
+                <option value="10-15">10-15 years</option>
+                <option value="15+">15+ years</option>
+              </select>
+              <span class="error-text">Please select your experience</span>
+            </div>
+
+            <div class="form-group">
+              <label for="education">Highest Education <span class="required">*</span></label>
+              <select id="education" name="education" required>
+                <option value="">Select education</option>
+                <option value="high-school">High School (10th)</option>
+                <option value="intermediate">Intermediate (12th)</option>
+                <option value="diploma">Diploma</option>
+                <option value="bachelors">Bachelor's Degree</option>
+                <option value="masters">Master's Degree</option>
+                <option value="phd">Ph.D / Doctorate</option>
+                <option value="other">Other</option>
+              </select>
+              <span class="error-text">Please select your education</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="industry">Industry <span class="required">*</span></label>
+              <select id="industry" name="industry" required>
+                <option value="">Select industry</option>
+                <option value="it-software">IT & Software</option>
+                <option value="banking">Banking & Finance</option>
+                <option value="healthcare">Healthcare & Pharma</option>
+                <option value="manufacturing">Manufacturing</option>
+                <option value="retail">Retail & E-commerce</option>
+                <option value="education">Education & Training</option>
+                <option value="marketing">Marketing & Advertising</option>
+                <option value="construction">Construction & Real Estate</option>
+                <option value="hospitality">Hospitality & Tourism</option>
+                <option value="transport">Transport & Logistics</option>
+                <option value="telecom">Telecommunications</option>
+                <option value="media">Media & Entertainment</option>
+                <option value="government">Government / Public Sector</option>
+                <option value="other">Other</option>
+              </select>
+              <span class="error-text">Please select your industry</span>
+            </div>
+
+            <div class="form-group">
+              <label for="functionalArea">Functional Area</label>
+              <select id="functionalArea" name="functionalArea">
+                <option value="">Select area</option>
+                <option value="engineering">Engineering / Technical</option>
+                <option value="sales">Sales & Business Development</option>
+                <option value="marketing">Marketing & Communications</option>
+                <option value="finance">Finance & Accounting</option>
+                <option value="hr">Human Resources</option>
+                <option value="operations">Operations & Supply Chain</option>
+                <option value="design">Design & Creative</option>
+                <option value="content">Content & Documentation</option>
+                <option value="admin">Administration & Support</option>
+                <option value="legal">Legal & Compliance</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="skills">Key Skills <span class="required">*</span></label>
+            <textarea id="skills" name="skills" rows="3" placeholder="e.g., JavaScript, React.js, Node.js, Python, SQL, AWS, Docker" required></textarea>
+            <span class="error-text">Please enter at least one skill</span>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="summary">Professional Summary</label>
+            <textarea id="summary" name="summary" rows="4" placeholder="Briefly describe your professional background, achievements, and career goals..."></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="certifications">Certifications</label>
+              <input type="text" id="certifications" name="certifications" placeholder="e.g., AWS Solutions Architect"/>
+            </div>
+
+            <div class="form-group">
+              <label for="languages">Languages Known</label>
+              <input type="text" id="languages" name="languages" placeholder="e.g., English, Hindi, Tamil"/>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ STEP 3: DOCUMENTS & MEDIA ══ -->
+        <div class="form-step" data-step="3">
+          <h2 class="step-title">Documents & Media</h2>
+          <p class="step-subtitle">Upload your resume and profile photo</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Resume / CV <span class="required">*</span></label>
+              <div class="file-upload" onclick="document.getElementById('resume').click()">
+                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" onchange="handleFileSelect(this, 'resumeName')"/>
+                <div>
+                  <div class="file-upload-icon">📄</div>
+                  <div class="file-upload-text">Click or drag to upload</div>
+                  <div class="file-upload-hint">PDF or DOC, max 5MB</div>
+                </div>
+              </div>
+              <div class="file-name" id="resumeName"></div>
+              <span class="error-text">Please upload your resume</span>
+            </div>
+
+            <div class="form-group">
+              <label>Profile Photo</label>
+              <div class="file-upload" onclick="document.getElementById('photo').click()">
+                <input type="file" id="photo" name="photo" accept="image/*" onchange="handleFileSelect(this, 'photoName')"/>
+                <div>
+                  <div class="file-upload-icon">📷</div>
+                  <div class="file-upload-text">Click or drag to upload</div>
+                  <div class="file-upload-hint">JPG, PNG — max 2MB</div>
+                </div>
+              </div>
+              <div class="file-name" id="photoName"></div>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="portfolio">Portfolio / Website URL</label>
+            <input type="url" id="portfolio" name="portfolio" placeholder="https://yourportfolio.com"/>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="github">GitHub / Code Samples URL</label>
+            <input type="url" id="github" name="github" placeholder="https://github.com/yourusername"/>
+          </div>
+
+          <div class="form-group full-width">
+            <label>Employment Type Preferred <span class="required">*</span></label>
+            <div class="checkbox-group inline-check">
+              <label><input type="checkbox" name="employmentType" value="full-time"/><span>Full Time</span></label>
+              <label><input type="checkbox" name="employmentType" value="part-time"/><span>Part Time</span></label>
+              <label><input type="checkbox" name="employmentType" value="contract"/><span>Contract</span></label>
+              <label><input type="checkbox" name="employmentType" value="internship"/><span>Internship</span></label>
+              <label><input type="checkbox" name="employmentType" value="freelance"/><span>Freelance</span></label>
+              <label><input type="checkbox" name="employmentType" value="remote"/><span>Remote / Work from Home</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ STEP 4: JOB PREFERENCES ══ -->
+        <div class="form-step" data-step="4">
+          <h2 class="step-title">Job Preferences</h2>
+          <p class="step-subtitle">Help us find the perfect opportunities for you</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="preferredLocation">Preferred Work Location <span class="required">*</span></label>
+              <input type="text" id="preferredLocation" name="preferredLocation" placeholder="Chennai, Bangalore, Hyderabad" required/>
+              <span class="error-text">Please enter preferred location</span>
+            </div>
+
+            <div class="form-group">
+              <label for="workMode">Preferred Work Mode</label>
+              <select id="workMode" name="workMode">
+                <option value="">Select mode</option>
+                <option value="office">Office / On-site</option>
+                <option value="remote">Remote / Work from Home</option>
+                <option value="hybrid">Hybrid</option>
+                <option value="flexible">Flexible</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <div class="range-group">
+              <div class="range-header">
+                <label>Expected Annual Salary (INR)</label>
+                <span class="range-value" id="salaryDisplay">₹ 5,00,000</span>
+              </div>
+              <input type="range" id="expectedSalary" name="expectedSalary" min="100000" max="5000000" step="50000" value="500000" oninput="updateSalaryDisplay(this.value)"/>
+              <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px;">
+                <span>₹1L</span><span>₹50L+</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="currentSalary">Current Annual Salary (INR)</label>
+              <select id="currentSalary" name="currentSalary">
+                <option value="">Select range</option>
+                <option value="fresher">Fresher / No prior salary</option>
+                <option value="0-3">Less than 3 LPA</option>
+                <option value="3-5">3-5 LPA</option>
+                <option value="5-8">5-8 LPA</option>
+                <option value="8-12">8-12 LPA</option>
+                <option value="12-20">12-20 LPA</option>
+                <option value="20-30">20-30 LPA</option>
+                <option value="30+">30+ LPA</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="noticePeriod">Notice Period <span class="required">*</span></label>
+              <select id="noticePeriod" name="noticePeriod" required>
+                <option value="">Select notice period</option>
+                <option value="immediate">Immediate (Within 7 days)</option>
+                <option value="15days">15 Days</option>
+                <option value="1month">1 Month</option>
+                <option value="2months">2 Months</option>
+                <option value="3months">3 Months</option>
+                <option value="3months+">More than 3 Months</option>
+              </select>
+              <span class="error-text">Please select your notice period</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="department">Preferred Department</label>
+              <select id="department" name="department">
+                <option value="">Select department</option>
+                <option value="engineering">Engineering / Technology</option>
+                <option value="product">Product Management</option>
+                <option value="design">Design</option>
+                <option value="marketing">Marketing & Sales</option>
+                <option value="finance">Finance & Accounts</option>
+                <option value="hr">Human Resources</option>
+                <option value="operations">Operations</option>
+                <option value="support">Customer Support</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="jobType">Job Type</label>
+              <select id="jobType" name="jobType">
+                <option value="">Select job type</option>
+                <option value="permanent">Permanent</option>
+                <option value="temporary">Temporary</option>
+                <option value="contract">Contract Basis</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label>Ready to Relocate?</label>
+            <div class="radio-group inline-radio">
+              <label><input type="radio" name="relocation" value="yes"/><span>Yes</span></label>
+              <label><input type="radio" name="relocation" value="no"/><span>No</span></label>
+              <label><input type="radio" name="relocation" value="within-state"/><span>Within State Only</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ STEP 5: ACCOUNT SECURITY ══ -->
+        <div class="form-step" data-step="5">
+          <h2 class="step-title">Secure Your Account</h2>
+          <p class="step-subtitle">Create a strong password to protect your profile</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="password">Password <span class="required">*</span></label>
+              <div class="password-wrapper">
+                <input type="password" id="password" name="password" placeholder="Create a strong password" required/>
+                <button type="button" class="password-toggle" onclick="togglePassword('password', this)">
+                  <svg id="eyeIcon1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password <span class="required">*</span></label>
+              <div class="password-wrapper">
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password" required/>
+                <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword', this)">
+                  <svg id="eyeIcon2" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+              <span class="error-text">Passwords do not match</span>
+            </div>
+
+            <div class="form-group" style="background:var(--teal-lt);border-radius:10px;padding:14px 16px;">
+              <p style="font-size:12px;color:var(--teal-dk);font-weight:600;margin-bottom:10px;">Password must contain:</p>
+              <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;">
+                <li style="font-size:12px;color:var(--sub);display:flex;align-items:center;gap:8px;">
+                  <span style="width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;"></span>
+                  At least 8 characters long
+                </li>
+                <li style="font-size:12px;color:var(--sub);display:flex;align-items:center;gap:8px;">
+                  <span style="width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;"></span>
+                  At least one uppercase letter (A-Z)
+                </li>
+                <li style="font-size:12px;color:var(--sub);display:flex;align-items:center;gap:8px;">
+                  <span style="width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;"></span>
+                  At least one lowercase letter (a-z)
+                </li>
+                <li style="font-size:12px;color:var(--sub);display:flex;align-items:center;gap:8px;">
+                  <span style="width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;"></span>
+                  At least one number (0-9)
+                </li>
+                <li style="font-size:12px;color:var(--sub);display:flex;align-items:center;gap:8px;">
+                  <span style="width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;"></span>
+                  At least one special character (!@#$%^&*)
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="form-group full-width" style="margin-top:24px;">
+            <div class="inline-checkbox-row">
+              <input type="checkbox" id="agreeTerms" name="agreeTerms" required/>
+              <label for="agreeTerms" style="text-transform:none;letter-spacing:0;font-size:14px;color:var(--sub);margin:0;cursor:pointer;">
+                I agree to the <a href="#" style="color:var(--teal);font-weight:600;">Terms of Service</a> and <a href="#" style="color:var(--teal);font-weight:600;">Privacy Policy</a>, and consent to receiving communications from JobX360.
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <div class="inline-checkbox-row">
+              <input type="checkbox" id="emailUpdates" name="emailUpdates"/>
+              <label for="emailUpdates" style="text-transform:none;letter-spacing:0;font-size:14px;color:var(--sub);margin:0;cursor:pointer;">
+                Send me job alerts and career tips via email
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+          <button type="button" class="btn btn-back" id="backBtn" onclick="prevStep()" disabled>
+            ← Back
+          </button>
+          <span class="step-counter" id="stepCounter">Step 1 of 5</span>
+          <button type="button" class="btn btn-next" id="nextBtn" onclick="nextStep()">
+            Next →
+          </button>
+          <button type="submit" class="btn btn-submit" id="submitBtn" style="display:none;">
+            Create Account ✓
+          </button>
+        </div>
+      </form>
+
+      <!-- Success Banner -->
+      <div class="success-banner" id="successBanner">
+        <div class="success-icon">🎉</div>
+        <h2>Registration Successful!</h2>
+        <p>Welcome to JobX360! Your profile is ready to help you land your dream job.</p>
+        <div class="success-details">
+          <h4>What's Next?</h4>
+          <ul>
+            <li>Complete your profile to increase visibility</li>
+            <li>Browse and apply to matching job opportunities</li>
+            <li>Set up job alerts for your preferred roles</li>
+            <li>Get recognized by top recruiters on our platform</li>
+          </ul>
+        </div>
+        <p style="font-size:13px;color:var(--muted);">Redirecting to your dashboard in a few seconds...</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-bottom wrap">
+    <span>© 2026 JobX360. All rights reserved.</span>
+    <span>Privacy Policy · Terms of Use · Sitemap</span>
+  </div>
+</footer>
+
+<script>
+  let currentStep = 1;
+  const totalSteps = 5;
+
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+    document.getElementById('hbg').classList.toggle('open');
+  }
+
+  function togglePassword(inputId, btn) {
+    const input = document.getElementById(inputId);
+    const isPassword = input.type === 'password';
+    input.type = isPassword ? 'text' : 'password';
+
+    // Replace SVG with eye or eye-off icon
+    if (isPassword) {
+      btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
+    } else {
+      btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+    }
+  }
+
+  function handleFileSelect(input, displayId) {
+    const display = document.getElementById(displayId);
+    if (input.files && input.files[0]) {
+      display.textContent = '📎 ' + input.files[0].name;
+    }
+  }
+
+  function updateSalaryDisplay(value) {
+    const formatted = new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0
+    }).format(value);
+    document.getElementById('salaryDisplay').textContent = formatted;
+  }
+
+  function validateStep(step) {
+    let isValid = true;
+    const stepEl = document.querySelector(`.form-step[data-step="${step}"]`);
+    const requiredFields = stepEl.querySelectorAll('[required]');
+
+    requiredFields.forEach(field => {
+      const group = field.closest('.form-group');
+      if (!group) return;
+
+      if (field.type === 'checkbox' || field.type === 'radio') {
+        const name = field.name;
+        const checked = stepEl.querySelector(`[name="${name}"]:checked`);
+        if (field.required && !checked) {
+          group.classList.add('error');
+          isValid = false;
+        } else {
+          group.classList.remove('error');
+        }
+      } else if (!field.value.trim()) {
+        group.classList.add('error');
+        isValid = false;
+      } else {
+        group.classList.remove('error');
+      }
+    });
+
+    // Special validations
+    if (step === 1) {
+      const email = document.getElementById('email');
+      if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+        email.closest('.form-group').classList.add('error');
+        isValid = false;
+      }
+    }
+
+    if (step === 5) {
+      const password = document.getElementById('password');
+      const confirm = document.getElementById('confirmPassword');
+      const strong = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
+      if (password.value && !strong.test(password.value)) {
+        password.closest('.form-group').classList.add('error');
+        isValid = false;
+      }
+      if (confirm.value !== password.value) {
+        confirm.closest('.form-group').classList.add('error');
+        isValid = false;
+      }
+    }
+
+    return isValid;
+  }
+
+  function updateStepIndicator() {
+    document.querySelectorAll('.step-item').forEach((item, index) => {
+      const stepNum = index + 1;
+      item.classList.remove('active', 'completed');
+      if (stepNum === currentStep) {
+        item.classList.add('active');
+      } else if (stepNum < currentStep) {
+        item.classList.add('completed');
+      }
+    });
+
+    document.querySelectorAll('.step-connector').forEach((conn, index) => {
+      conn.classList.toggle('active', index < currentStep - 1);
+    });
+
+    document.getElementById('stepCounter').textContent = `Step ${currentStep} of ${totalSteps}`;
+    document.getElementById('backBtn').disabled = currentStep === 1;
+
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    if (currentStep === totalSteps) {
+      nextBtn.style.display = 'none';
+      submitBtn.style.display = 'inline-flex';
+    } else {
+      nextBtn.style.display = 'inline-flex';
+      submitBtn.style.display = 'none';
+    }
+  }
+
+  function showStep(step) {
+    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+    document.querySelector(`.form-step[data-step="${step}"]`).classList.add('active');
+    updateStepIndicator();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function nextStep() {
+    if (!validateStep(currentStep)) {
+      return;
+    }
+    if (currentStep < totalSteps) {
+      currentStep++;
+      showStep(currentStep);
+    }
+  }
+
+  function prevStep() {
+    if (currentStep > 1) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  }
+
+  // Form submission
+  const form = document.getElementById('regForm');
+  const successBanner = document.getElementById('successBanner');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    if (!validateStep(currentStep)) return;
+
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Creating Account...';
+
+    await new Promise(resolve => setTimeout(resolve, 2500));
+
+    form.style.display = 'none';
+    document.querySelector('.step-indicator').style.display = 'none';
+    document.querySelector('.form-actions').style.display = 'none';
+    document.querySelector('.step-title').closest('.form-step').style.display = 'none';
+    successBanner.classList.add('show');
+
+    setTimeout(() => {
+      window.location.href = 'index.html#contact';
+    }, 4000);
+  });
+
+  // Header scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Real-time validation clearing
+  document.querySelectorAll('input, select, textarea').forEach(field => {
+    field.addEventListener('input', () => {
+      field.closest('.form-group')?.classList.remove('error');
+    });
+  });
+</script>
+</body>
+</html>
